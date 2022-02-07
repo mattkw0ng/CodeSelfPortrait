@@ -1,14 +1,11 @@
 
-// Setup code goes here
+/*
+* Code Self Portrait
+*/
 function setup() {
   createCanvas(800, 800);
-  // background(2);
  }
 
-
- var size = 10;
- var clr = 0;
-// Draw code goes here
 function draw() {
   fill(133, 132, 103);
   stroke(0);
@@ -60,7 +57,6 @@ function draw() {
 
   // DRAW FACIAL FEATURES
   drawFace();
-
 }
 
 function drawFace(){
@@ -113,7 +109,3 @@ function hairDetails() {
 
   pop();
 }
-
-
-
-
