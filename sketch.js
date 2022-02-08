@@ -2,7 +2,7 @@
 /*
 * Code Self Portrait
 */
-var gDebugMode = true;
+var gDebugMode = false;
 
 function setup() {
   createCanvas(800, 800);
