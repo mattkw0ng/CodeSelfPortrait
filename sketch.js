@@ -2,23 +2,47 @@
 /*
 * Code Self Portrait
 */
+var gDebugMode = true;
+
 function setup() {
   createCanvas(800, 800);
  }
 
 function draw() {
+  background(255);
   fill(133, 132, 103);
   stroke(0);
   strokeWeight(6);
 
   // SHIRT
+  drawShirt();
+
+  // NECK
+  drawNeck();
+
+  // HAIR
+  drawHair();
+
+  // HEAD
+  drawHead();
+
+  // FACIAL FEATURES
+  drawFace();
+
+  if( gDebugMode ) {
+    displayMouseCoordinates();
+  }
+}
+
+function drawShirt() {
   beginShape();
   vertex(160, 610);
   vertex(316, 480);
   vertex(440, 610);
   endShape(CLOSE);
+}
 
-  // NECK
+function drawNeck() {
   fill(237, 181, 135);
   beginShape();
   vertex(214, 370);
@@ -27,8 +51,9 @@ function draw() {
   vertex(280, 584);
   vertex(228, 584);
   endShape(CLOSE);
+}
 
-  // HAIR
+function drawHair() {
   fill(51, 36, 24);
   beginShape();
   vertex(344, 330);
@@ -40,7 +65,9 @@ function draw() {
   vertex(130, 198);
   endShape(CLOSE);
   hairDetails();
+}
 
+function drawHead() {
   // EAR
   fill(237, 181, 135);
   circle(374, 345, 80);
@@ -54,34 +81,54 @@ function draw() {
   vertex(340, 440);
   vertex(350, 160);
   endShape(CLOSE);
-
-  // DRAW FACIAL FEATURES
-  drawFace();
 }
 
-function drawFace(){
+function drawFace() {
   // iris
   fill(51, 36, 24);
   circle(150, 310, 30);
   circle(256, 310, 30);
 
-  // cutoff circle
-  stroke(237, 181, 135);
-  line(130, 296, 170, 293);
-  line(292, 297, 236, 293);
+  // Animated Eyes & Eyebrows
+  if (mouseIsPressed === false) {
+    // cutoff circle
+    stroke(237, 181, 135);
+    line(130, 296, 170, 293);
+    line(292, 297, 236, 293);
 
-  // left eyelid
-  stroke(0);
-  line(128, 302, 170, 298);
-  line(170, 298, 174, 318);
+    // left eyelid
+    stroke(0);
+    line(128, 302, 170, 298);
+    line(170, 298, 174, 318);
 
-  // right eyelid
-  line(290, 302, 236, 298);
-  line(236, 298, 228, 318);
+    // right eyelid
+    line(290, 302, 236, 298);
+    line(236, 298, 228, 318);
 
-  // eyebrows
-  line(118, 250, 170, 246);
-  line(230, 246, 310, 250);
+    // eyebrows
+    line(118, 250, 170, 246);
+    line(230, 246, 310, 250);
+  } else {
+    // cutoff circle
+    stroke(237, 181, 135);
+    line(130, 295, 170, 288);
+    line(292, 292, 236, 288);
+
+    // left eyelid
+    stroke(0);
+    line(128, 297, 170, 293);
+    line(170, 293, 174, 313);
+
+    // right eyelid
+    line(290, 297, 236, 293);
+    line(236, 293, 228, 313);
+
+    // eyebrows
+    line(118, 240, 170, 236);
+    line(230, 236, 310, 240);
+  }
+
+  
 
   // NOSE
   fill(237, 181, 135);
@@ -89,6 +136,7 @@ function drawFace(){
 
   // MOUTH
   line(180, 426, 224, 426);
+  line(224, 426, 233, 423);
 }
 
 function hairDetails() {
@@ -108,4 +156,18 @@ function hairDetails() {
   line(346, 236, 404, 294);
 
   pop();
+}
+
+function displayMouseCoordinates() {
+  fill(0);
+  textSize(24);
+  strokeWeight(1);
+  textAlign(LEFT);
+  text("X: " + mouseX + " Y: " + mouseY, 20, height - 20);
+}
+
+function keyTyped() {
+  if (key == ' ') {
+    gDebugMode = !gDebugMode;
+  }
 }
